@@ -130,11 +130,12 @@ const SPECIALTY = {
       let ok = true;
       const name = $('#b-name'), phone = $('#b-phone'), email = $('#b-email'),
             svc = $('#b-service'), date = $('#b-date'), time = $('#b-time'), msg = $('#b-msg');
-      if (!name.value.trim()) { fail(name, 'Please enter your name'); ok = false; }
-      if (!/^[\d\s+\-()]{7,20}$/.test(phone.value.trim())) { fail(phone, 'Enter a valid phone number'); ok = false; }
-      if (email.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) { fail(email, 'Enter a valid email'); ok = false; }
-      if (!svc.value) { fail(svc, 'Please choose a service'); ok = false; }
-      if (!date.value) { fail(date, 'Choose a date'); ok = false; }
+      const T = (s) => (window.I18N ? window.I18N.t(s) : s);
+      if (!name.value.trim()) { fail(name, T('Please enter your name')); ok = false; }
+      if (!/^[\d\s+\-()]{7,20}$/.test(phone.value.trim())) { fail(phone, T('Enter a valid phone number')); ok = false; }
+      if (email.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) { fail(email, T('Enter a valid email')); ok = false; }
+      if (!svc.value) { fail(svc, T('Please choose a service')); ok = false; }
+      if (!date.value) { fail(date, T('Choose a date')); ok = false; }
       if (!ok) return;
 
       const dStr = date.value ? new Date(date.value + 'T00:00:00').toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' }) : '';
